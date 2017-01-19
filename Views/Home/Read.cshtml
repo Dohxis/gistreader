@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Files";
+    var gist = ViewData["Gist"] as Octokit.Gist;
+    var files = gist.Files;
+ }
+<div class="ui vertical center aligned segment">
+    <div class="ui segments">
+        <div class="ui cards">
+        <div class="card" style="width: 100%; text-align: left">
+            <div class="content">
+            <div class="header">
+                @if(@gist.Description.Equals("")){
+                       @gist.Id
+                   } else {
+                       @gist.Description
+                   }
+            </div>
+            <div class="meta">
+                @ViewData["Username"]
+            </div>
+            <div class="description">
+               @foreach(var file in files){
+                   <div class="ui segments">
+                    <div class="ui left aligned secondary segment">
+                        <h3>@file.Value.Filename</h3>
+                    </div>
+                    <div class="ui segment">
+                        @{ var result = CommonMark.CommonMarkConverter.Convert(file.Value.Content); }
+                        @Html.Raw(result)
+                        </div>
+                    </div>
+               }
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+

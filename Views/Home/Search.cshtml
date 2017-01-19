@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "All Gists";
+    var gists = ViewData["Gists"] as List<Octokit.Gist>;
+}
+<div class="ui vertical center aligned segment">
+    <div class="ui segments">
+        <div class="ui cards">
+        <div class="card" style="width: 100%; text-align: left">
+            <div class="content">
+            <img class="right floated mini ui image" src='@ViewData["Avatar"]'>
+            <div class="header">
+                @ViewData["FullName"]
+            </div>
+            <div class="meta">
+                @ViewData["Username"]
+            </div>
+            <div class="description">
+               @foreach(var gist in gists){
+                   <a href="/Read/@gist.Id">
+                   @if(@gist.Description.Equals("")){
+                       @gist.Id
+                   } else {
+                       @gist.Description
+                   }    
+                   </a><br />
+               }
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Search";
+}
+
+
+<div class="ui vertical center aligned segment">
+
+        <!--<div class="ui negative message">
+            <i class="close icon"></i>
+            <b>Sorry!</b>
+        </div>-->
+    
+
+    <div class="ui segments">
+        <div class="ui left aligned secondary segment">
+            <h3>Search public gists</h3>
+        </div>
+        <div class="ui left aligned segment">
+            <p>Here you can search for any public gist on GitHub. Just enter the username below and we will show you all gists available!</p>
+            <form style="width: 100%;" class="ui action input" method="post" action="/Search">
+                <input type="text" name="username">
+                <center><button type="submit" class="ui button green color">Search</button></center>
+            </form>
+        </div>
+    </div>
+
+</div>
